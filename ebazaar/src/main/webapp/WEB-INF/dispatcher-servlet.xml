@@ -12,8 +12,8 @@ xmlns:mvc= "http://www.springframework.org/schema/mvc"
    
    ">
    
-   <context:component-scan base-package="net.kzn.ebazaar.controller"/>
-   <context:component-scan base-package="net.kzn.bazaarbackend.daoimpl"/>
+   <context:component-scan base-package="net.kzn.ebazaar"/>
+   <context:component-scan base-package="net.kzn.bazaarbackend"/>
    
    
    <bean id="ViewResolver"
