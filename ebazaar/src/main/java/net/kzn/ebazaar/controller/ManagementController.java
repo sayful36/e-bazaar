@@ -2,10 +2,14 @@ package net.kzn.ebazaar.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,7 +61,17 @@ public class ManagementController {
 	
 	//handling product submission
 	@RequestMapping(value="/products", method=RequestMethod.POST)
-	public String handleProductSubmission(@ModelAttribute("product")Product mProduct) {
+	public String handleProductSubmission(@Valid @ModelAttribute("product")Product mProduct, BindingResult results, Model model) {
+		
+		// check if there are any errors
+	if(results.hasErrors()) {
+	
+		model.addAttribute("userClickManageProducts", true);
+		model.addAttribute("title", "Manage Products");
+		model.addAttribute("message", "Validation failed for Product Submission!");
+		
+		return "page";
+	}	
 		
 		logger.info(mProduct.toString());
 		

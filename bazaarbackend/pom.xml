@@ -93,18 +93,31 @@
 			<version>${jackson.version}</version>
 		</dependency>
 
-<!-- SLF4J Logging -->
-<dependency>
-<groupId>ch.qos.logback</groupId>
-<artifactId>logback-classic</artifactId>
-<version>1.2.1</version>
-</dependency>
+		<!-- SLF4J Logging -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 
-<dependency>
-<groupId>org.slf4j</groupId>
-<artifactId>jcl-over-slf4j</artifactId>
-<version>1.7.24</version>
-</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.24</version>
+		</dependency>
+
+		<!-- Validation -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.4.1.Final</version>
+		</dependency>
 
 
 	</dependencies>
