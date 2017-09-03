@@ -2,6 +2,7 @@ package net.kzn.ebazaar.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -20,6 +21,8 @@ import net.kzn.bazaarbackend.dao.CategoryDAO;
 import net.kzn.bazaarbackend.dao.ProductDAO;
 import net.kzn.bazaarbackend.dto.Category;
 import net.kzn.bazaarbackend.dto.Product;
+import net.kzn.ebazaar.util.FileUploadUtility;
+import net.kzn.ebazaar.validator.ProductValidator;
 
 @Controller
 @RequestMapping("/manage")
@@ -61,7 +64,13 @@ public class ManagementController {
 	
 	//handling product submission
 	@RequestMapping(value="/products", method=RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute("product")Product mProduct, BindingResult results, Model model) {
+	public String handleProductSubmission(@Valid @ModelAttribute("product")Product mProduct, BindingResult results, Model model,
+	HttpServletRequest request) {
+		
+	new ProductValidator().validate(mProduct, results);	
+		
+		
+		
 		
 		// check if there are any errors
 	if(results.hasErrors()) {
@@ -77,6 +86,11 @@ public class ManagementController {
 		
 		// Create a new product method
 		productDAO.add(mProduct);
+		
+		if(!mProduct.getFile().getOriginalFilename().equals("")) {
+			FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
+		}
+		
 		
 		return "redirect:/manage/products?operation=product";		
 	}

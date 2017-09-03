@@ -24,12 +24,13 @@
 <div class="panel-heading">
 <h4>Product Management</h4>
 </div>
-<div class="panel-body"></div>
+<div class="panel-body">
 
 <!-- FORM ELEMENTS -->
 <sf:form class="form-horizontal" modelAttribute="product"
 	action="${contextRoot}/manage/products"
 	method="POST"
+	enctype="multipart/form-data"
 >
 
 <div class="form-group">
@@ -75,6 +76,15 @@
 </div>
 </div>
 
+<!-- File element for image upload -->
+<div class="form-group">
+<label class="control-label col-md-4" for="file">Select an Image: </label> 
+<div class="col-md-8">
+<sf:input type="file" path="file" id="file" class="form-control"/>
+<sf:errors path="file" cssClass="help-block" element="em"/>
+</div>
+</div>
+
 <div class="form-group">
 <label class="control-label col-md-4" for="categoryId">Select Category: </label> 
 <div class="col-md-8">
@@ -107,5 +117,5 @@ itemValue="id"
 </div>
 </div>
 </div>
-
+</div>
 
